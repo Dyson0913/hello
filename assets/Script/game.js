@@ -53,9 +53,10 @@ cc.Class({
         this.score = 0;
         
        
-        // setTimeout(function () { 
-        //   //
-        // }, 3);
+         setTimeout(function () { 
+             var _model = require('model');
+            _model.start();
+         }, 3);
         
         
     },
@@ -74,6 +75,7 @@ cc.Class({
         this.starDuration = this.minStarDuration + cc.random0To1() * (this.maxStarDuration - this.minStarDuration);
         this.timer = 0;
         
+       
         //  self.ws = new WebSocket("ws://45.76.97.239:7000/gamesocket/aa_123123123");
         // self.ws.onopen = function (event) {
         //     console.log("Send Text WS was opened."+event); 
@@ -113,7 +115,7 @@ cc.Class({
 
     gameOver: function () {
         this.player.stopAllActions(); // stop the jumping action of the player node
-        cc.director.loadScene('myhellow');
+       // cc.director.loadScene('myhellow');
     },
     // called every frame, uncomment this function to activate update callback
      update: function (dt) {
