@@ -8,7 +8,7 @@ var socket = function ()
 {
    // this.name = 'websocket';
     self = this;
-    
+     cc.log("socket init ");
 };
 
 
@@ -17,7 +17,11 @@ socket.Connect = function ()
    // cc.log(self.name);
     //_model = model.getInstance();
     //var token = _model.login_name +"_"+ _model.login_pw;    
-    var token = "22_44"
+     var _model = require('model');
+     var time = _model.getValue("time")
+    var token = time
+    
+    
     // if(self.ws != undefined)
     // {
     //     //no more create

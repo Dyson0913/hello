@@ -82,6 +82,8 @@ var model = {//function ()
     
     load: function () {
         // ...
+      // this.dicVaule={};
+      cc.log('model init');
     },
     
     start: function ()
@@ -92,6 +94,15 @@ var model = {//function ()
         //this.socket.Connect();
     },
     
+    pushValue : function(key,value)
+    {
+        dicVaule[key] = value    
+    },
+    
+    getValue : function(key)
+    {    
+        return dicVaule[key]
+    },
     
 };
 
