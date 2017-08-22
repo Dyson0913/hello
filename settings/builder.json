@@ -23,5 +23,6 @@
   "renderMode": "0",
   "startScene": "9de1fe58-8086-41c4-a881-29a16cab56f4",
   "title": "hello_world",
-  "webOrientation": "auto"
+  "webOrientation": "auto",
+  "md5Cache": false
 }
