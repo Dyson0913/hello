@@ -32,79 +32,56 @@ socket.Connect = function ()
 
     //create  socket
     var url = "ws://45.76.97.239:9000/gamesocket/"+token;
-    // self.ws = new WebSocket(url);
-   cc.log("reday to connect "+token);
-     //self.ws.onopen = self.connectionOpen.bind(self);
-    // self.ws.onmessage = self.onMessage.bind(self);
-    // self.ws.onerror = self.displayError.bind(self);
-    // self.ws.onclose = self.socketclose.bind(self);
-
-      self.ws = new WebSocket("ws://45.76.97.239:9000/gamesocket/aa_123123123");
-     self.ws.onopen = function (event) {
-         console.log("Send Text WS was opened."+event); 
-            
-     }; 
-         self.ws.onmessage = function (event) { 
-
-             console.log("response text msg: " + event.data);
-             let protobuf = require("protobufjs");
-             let builder = protobuf.newBuilder();
-             //protobuf.protoFromFile("lobby.proto",builder);
-             protobuf.protoFromFile(cc.url.raw('resources/lobby.proto'),builder);
-             let PB = builder.build('msg');
-           
-             console.log("response text msg: " + typeof(event.data)); 
-              var buf ;
-
-
-             var msgObj = new PB.lobby();
-             msgObj.id = "ss";
-             msgObj.name = "ihowe";
-             msgObj.enterTime ="aa";
-             var buffer = msgObj.toArrayBuffer();
-             let p = PB.lobby.decode(event.data);
-             
-             console.log("response text msg: " + p.id);
-             console.log("response text msg: " + p.name);
-             console.log("response text msg: " + p.enterTime);
-          
-         };
-         self.ws.onerror = function (event) { console.log("Send Text fired an error"); }; 
-         self.ws.onclose = function (event) { console.log("WebSocket instance closed."); };
-        
-          if (self.ws.readyState === WebSocket.OPEN) { 
-                   console.log("Hello WebSocket, I'm a text message."); } 
-             else {
-                   console.log("WebSocket instance wasn't ready..."); } 
+    
+    self = this;
+    self.ws = new WebSocket("ws://45.76.97.239:9000/gamesocket/aa_123123123");
+    self.ws.binaryType = 'arraybuffer';
+    self.ws.onopen = self.connectionOpen.bind(self);
+    self.ws.onmessage = self.onMessage.bind(self);
+    self.ws.onclose = self.socketClose.bind(self);
+    self.ws.onerror = self.onError.bind(self);
+   
+//           if (self.ws.readyState === WebSocket.OPEN) { 
+//                    console.log("Hello WebSocket, I'm a text message."); } 
+//              else {
+//                    console.log("WebSocket instance wasn't ready..."); } 
 };
-
-
 
 
 socket.connectionOpen = function ()
 {    
-    var ret = {};
-    
+    console.log("Send Text WS was opened."+event); 
+
     //var retjson = JSON.stringify(ret);
     //this.ws.send(retjson)
 };
 
-socket.onMessage = function (message)
+socket.onMessage = function (event)
 {
-    var data = JSON.parse(message.data);
+    console.log("response text msg: " + event.data);
+
+    var data = proto.msg.lobby.deserializeBinary(event.data);
+    var p = new proto.msg.lobby();
+    p.setId("10");
+    self.ws.send(p.serializeBinary());
+    //var data = JSON.parse(message.data);
   // _model.eventHandle(data["state"],[data]);
    
 };
 
 socket.sendMessage = function (msg)
 {
-   // if(self.ws != null)
-     //self.ws.send(msg);
+    if(self.ws != null) self.ws.send(msg);
 }
 
-socket.socketclose = function(msg)
+socket.socketClose = function(msg)
 {
-    trace('Websocket onclose: ' + msg);
+    console.log('Websocket onclose: ' + msg);
+};
+
+socket.onError = function(msg)
+{
+    console.log('Websocket onError: ' + msg);
 };
 
 module.exports = socket;
