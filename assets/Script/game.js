@@ -55,6 +55,7 @@ cc.Class({
        
          setTimeout(function () { 
              var _model = require('model');
+             _model.init();
              _model.pushValue("time",10);
              _model.start();
             

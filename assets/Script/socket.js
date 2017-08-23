@@ -1,8 +1,5 @@
 
-
-//var _model;
-
-
+var _model = require('model');
 
 var socket = function ()
 {
@@ -14,13 +11,13 @@ var socket = function ()
 
 socket.Connect = function ()
 {
-   // cc.log(self.name);
+   
     //_model = model.getInstance();
     //var token = _model.login_name +"_"+ _model.login_pw;    
-     var _model = require('model');
+     
      var time = _model.getValue("time")
     var token = time
-    
+     cc.log(time);
     
     // if(self.ws != undefined)
     // {
@@ -40,11 +37,7 @@ socket.Connect = function ()
     self.ws.onmessage = self.onMessage.bind(self);
     self.ws.onclose = self.socketClose.bind(self);
     self.ws.onerror = self.onError.bind(self);
-   
-//           if (self.ws.readyState === WebSocket.OPEN) { 
-//                    console.log("Hello WebSocket, I'm a text message."); } 
-//              else {
-//                    console.log("WebSocket instance wasn't ready..."); } 
+    //self.ws.readyState === WebSocket.OPEN
 };
 
 
@@ -65,7 +58,7 @@ socket.onMessage = function (event)
     p.setId("10");
     self.ws.send(p.serializeBinary());
     //var data = JSON.parse(message.data);
-  // _model.eventHandle(data["state"],[data]);
+     _model.eventHandle(1,["123","356"]);
    
 };
 

@@ -5,7 +5,7 @@
 //dictionary
 var Scene={}; //Scene
 var font={};
-var dicVaule={};
+
 
 var current_view_name;
 //loging & lobby
@@ -80,10 +80,15 @@ var model = {//function ()
 
     // this.gameState = ["init","wait_bet","player_card","banker_card","settle"];
     
-    load: function () {
+    init: function () {
         // ...
       // this.dicVaule={};
       cc.log('model init');
+      this.dicVaule={};
+    
+      
+       //var sign_login_ok  =  new notify.signals.Signal();
+       //this.sign_login_ok  =  new notify.signals.Signal();
     },
     
     start: function ()
@@ -96,14 +101,20 @@ var model = {//function ()
     
     pushValue : function(key,value)
     {
-        dicVaule[key] = value    
+        this.dicVaule[key] = value    
     },
     
     getValue : function(key)
     {    
-        return dicVaule[key]
+        return this.dicVaule[key]
     },
     
+    eventHandle : function (msgtype,data)
+    {
+        console.log("response text msgtype: " + msgtype);
+        console.log("response text data: " + data);
+    },
+
 };
 
 

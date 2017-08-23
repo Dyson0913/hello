@@ -1,3 +1,5 @@
+var _model = require('model');
+
 cc.Class({
     extends: cc.Component,
 
@@ -93,7 +95,14 @@ cc.Class({
 
         // 初始化键盘输入监听
         this.setInputControl();
-    },
+        //_model.sign_login_ok.add(this.onget);  
+
+     },
+ 
+   // onget: function () {
+   //     console.log("get ok ");
+  // }
+    //},
 
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
