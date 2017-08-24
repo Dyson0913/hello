@@ -85,9 +85,7 @@ var model = {//function ()
       // this.dicVaule={};
       cc.log('model init');
       this.dicVaule={};
-    
-      
-       //var sign_login_ok  =  new notify.signals.Signal();
+        
        //this.sign_login_ok  =  new notify.signals.Signal();
     },
     
@@ -95,6 +93,8 @@ var model = {//function ()
     {
         //cc.log('model start');
         var socket = require('socket')
+        
+       //this.sign_login_ok  =  new notify.signals.Signal();// new notify.signals.Signal();
         socket.Connect();
         //this.socket.Connect();
     },
