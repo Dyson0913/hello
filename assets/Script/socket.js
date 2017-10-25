@@ -31,7 +31,8 @@ socket.Connect = function ()
     var url = "ws://45.76.97.239:9000/gamesocket/"+token;
     
     self = this;
-    self.ws = new WebSocket("ws://45.76.97.239:9000/gamesocket/aa_123123123");
+   // self.ws = new WebSocket("ws://45.76.97.239:9000/gamesocket/aa_123123123");
+    self.ws = new WebSocket("ws://192.168.0.21:3653");
     self.ws.binaryType = 'arraybuffer';
     self.ws.onopen = self.connectionOpen.bind(self);
     self.ws.onmessage = self.onMessage.bind(self);
@@ -47,6 +48,7 @@ socket.connectionOpen = function ()
 
     //var retjson = JSON.stringify(ret);
     //this.ws.send(retjson)
+     self.simulate_msg();
 };
 
 socket.onMessage = function (event)
@@ -79,7 +81,8 @@ socket.simulate_msg = function()
     p.setId("dyson");
    
     var data = p.serializeBinary();
-    var header = self.header(0,data.length,1,128);
+    var header = self.header(0,data.length+4,1,128);
+    
     
     var c = new Uint8Array(header.length + data.length);
     c.set(header);
