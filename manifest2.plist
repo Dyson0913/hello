@@ -29,13 +29,13 @@
 			<key>metadata</key>
 			<dict>
 				<key>bundle-identifier</key>
-				<string>com.Mars.casino</string>
+				<string>com.wpoker.fun</string>
 				<key>bundle-version</key>
 				<string>1.0.0</string>
 				<key>kind</key>
 				<string>software</string>
 				<key>title</key>
-				<string>Wpoker</string>
+				<string>斗玩娱乐</string>
 			</dict>
 			<key>thinned-assets</key>
 			<array>
